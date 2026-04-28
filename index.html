@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shared Drive Admin Dashboard</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <h1>Shared Drive Admin Dashboard</h1>
+      <p>공유드라이브 전체 현황 / 최근 변경 / 폴더 구조 / 정리 필요 파일</p>
+    </div>
+    <button id="refreshBtn">새로고침</button>
+  </header>
+
+  <main class="layout">
+    <section class="summary-grid">
+      <div class="card metric"><span>전체 파일 수</span><strong id="filesCount">-</strong></div>
+      <div class="card metric"><span>최근 7일 신규 업로드</span><strong id="new7dCount">-</strong></div>
+      <div class="card metric"><span>최근 7일 수정 파일</span><strong id="modified7dCount">-</strong></div>
+      <div class="card metric"><span>전체 폴더 수</span><strong id="foldersCount">-</strong></div>
+      <div class="card metric"><span>최근 변경 이벤트</span><strong id="changesCount">-</strong></div>
+      <div class="card metric"><span>PDF 수</span><strong id="pdfsCount">-</strong></div>
+    </section>
+
+    <section class="dashboard-grid">
+      <div class="card panel">
+        <h2>홈 대시보드</h2>
+        <div class="meta-line">
+          <span id="rootName">-</span>
+          <span id="lastSync">동기화 정보 없음</span>
+        </div>
+        <div class="type-bars" id="typeBars"></div>
+        <h3>폴더별 파일 수</h3>
+        <div id="folderStats" class="list small"></div>
+        <h3>최근 변경 파일 리스트</h3>
+        <div id="recentChangesHome" class="list"></div>
+      </div>
+
+      <div class="card panel">
+        <h2>최근 변경 화면</h2>
+        <div class="filter-row">
+          <select id="changeWindowFilter">
+            <option value="today">오늘</option>
+            <option value="7d" selected>이번 주</option>
+            <option value="30d">이번 달</option>
+          </select>
+        </div>
+        <div id="changesList" class="list"></div>
+      </div>
+    </section>
+
+    <section class="two-col">
+      <div class="card panel">
+        <h2>폴더 트리 화면</h2>
+        <p class="muted">하위 폴더와 파일을 한눈에 볼 수 있습니다.</p>
+        <div id="treeView" class="tree"></div>
+      </div>
+
+      <div class="card panel">
+        <h2>파일 검색 / 필터 화면</h2>
+        <div class="toolbar-row stack">
+          <input id="searchInput" type="text" placeholder="파일명 또는 경로 검색" />
+          <input id="ownerInput" type="text" placeholder="소유자/수정자 검색" />
+          <select id="typeFilter">
+            <option value="">전체 유형</option>
+            <option value="Doc">Doc</option>
+            <option value="Sheet">Sheet</option>
+            <option value="Slide">Slide</option>
+            <option value="PDF">PDF</option>
+            <option value="File">File</option>
+          </select>
+          <select id="dateFilter">
+            <option value="">수정일 전체</option>
+            <option value="7d">최근 7일</option>
+            <option value="30d">최근 30일</option>
+            <option value="90d">최근 90일</option>
+          </select>
+          <input id="folderFilter" type="text" placeholder="폴더 경로 포함 검색" />
+        </div>
+        <div id="searchResults" class="list"></div>
+      </div>
+    </section>
+
+    <section class="two-col">
+      <div class="card panel">
+        <h2>정리 필요 파일 화면</h2>
+        <h3>루트에 그냥 올라간 파일</h3>
+        <div id="rootLooseFiles" class="list small"></div>
+        <h3>폴더 없는 파일</h3>
+        <div id="noParentFiles" class="list small"></div>
+        <h3>이름 규칙 안 맞는 파일</h3>
+        <div id="invalidNames" class="list small"></div>
+        <h3>오래된 파일</h3>
+        <div id="staleFiles" class="list small"></div>
+        <h3>중복 의심 파일</h3>
+        <div id="duplicateFiles" class="list small"></div>
+      </div>
+
+      <div class="card panel">
+        <h2>상세 정보 화면</h2>
+        <div id="detailPanel" class="detail-panel">
+          <div class="empty">아직 선택된 파일이 없습니다.</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
