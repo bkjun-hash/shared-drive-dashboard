@@ -34,6 +34,7 @@ function renderSummary() {
   const s = dashboardData.summary;
   byId('filesCount').textContent = num(s.files);
   byId('new7dCount').textContent = num(s.new7d);
+  byId('new30dCount').textContent = num(s.new30d);
   byId('modified7dCount').textContent = num(s.modified7d);
   byId('foldersCount').textContent = num(s.folders);
   byId('changesCount').textContent = num(s.recentChanges);
