@@ -1,4 +1,4 @@
-const API_URL = 'https://script.google.com/a/macros/vgen.co.kr/s/AKfycbxiJ5NJ3d7eUUhs1rMZR7QxPQZKJMvI6buZD991jmpFxxQFQFn687mwY6SNMnlB3KJa/exec?action=data';
+const API_URL = 'https://script.google.com/macros/s/AKfycbxiJ5NJ3d7eUUhs1rMZR7QxPQZKJMvI6buZD991jmpFxxQFQFn687mwY6SNMnlB3KJa/exec?action=data';
 let dashboardData = null;
 
 document.addEventListener('DOMContentLoaded', () => {
